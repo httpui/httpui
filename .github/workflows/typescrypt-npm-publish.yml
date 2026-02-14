@@ -16,23 +16,32 @@ jobs:
 
       - name: npm ci
         run: npm ci
+        working-directory: typescript
 
       - name: npm version
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           npm version minor
+        working-directory: typescript
 
-      - name: build
+      - name: npm build
         run: npm run build
+        working-directory: typescript
 
-      - name: publish
+      - name: npm publish
         run: npm publish --access public
+        working-directory: typescript
+      
+      - name: git push
+        run: git push --follow-tags
 
 on:
   push:
     branches:
       - master
+    paths:
+      - 'typescrypt/**'
 
 permissions:
   contents: read
