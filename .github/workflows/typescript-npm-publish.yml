@@ -2,7 +2,8 @@ name: typescript npm publish
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
 
 jobs:
   build-and-publish:
@@ -24,13 +25,6 @@ jobs:
         run: npm ci
         working-directory: typescript
 
-      - name: npm version
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          npm version patch
-        working-directory: typescript
-
       - name: npm build
         run: npm run build
         working-directory: typescript
@@ -38,9 +32,6 @@ jobs:
       - name: npm publish
         run: npm publish --access public
         working-directory: typescript
-      
-      - name: git push
-        run: git push --follow-tags
 
 permissions:
   contents: read
