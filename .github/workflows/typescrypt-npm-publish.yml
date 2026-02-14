@@ -1,4 +1,9 @@
-name: npm
+name: typescript npm publish
+
+on:
+  push:
+    branches: [master]
+    paths: ['typescrypt/**']
 
 jobs:
   build-and-publish:
@@ -35,13 +40,6 @@ jobs:
       
       - name: git push
         run: git push --follow-tags
-
-on:
-  push:
-    branches:
-      - master
-    paths:
-      - 'typescrypt/**'
 
 permissions:
   contents: read
