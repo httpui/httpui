@@ -3,7 +3,6 @@ name: typescript npm publish
 on:
   push:
     branches: [master]
-    paths: ['typescrypt/**']
 
 jobs:
   build-and-publish:
