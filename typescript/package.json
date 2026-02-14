@@ -1,0 +1,22 @@
+{
+  "author": "Alex Morales, httpUI",
+  "description": "httpUI",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [],
+  "license": "AGPL-3.0",
+  "main": "dist/index.js",
+  "name": "@httpui/typescript",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build"
+  },
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "version": "0.0.1"
+}
