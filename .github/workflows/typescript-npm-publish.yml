@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v6
-        with:
-          persist-credentials: true
 
       - name: setup-node
         uses: actions/setup-node@v6
@@ -35,7 +33,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit --allow-empty-message --message=''
-          git push --follow-tags
+          git push
 
 permissions:
   contents: write
