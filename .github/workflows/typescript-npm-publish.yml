@@ -6,33 +6,34 @@ on:
       - master
 
 jobs:
-  build-and-publish:
+  typescript-npm-publish:
     runs-on: ubuntu-latest
 
     steps:
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           persist-credentials: true
 
       - name: setup-node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "24"
           registry-url: "https://registry.npmjs.org/"
-
-      - name: npm ci
-        run: npm ci
+      
+      - name: npm
+        run: |
+          npm ci
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          npm version patch
+          npm build
+          npm publish --access public
         working-directory: typescript
-
-      - name: npm build
-        run: npm run build
-        working-directory: typescript
-
-      - name: npm publish
-        run: npm publish --access public
-        working-directory: typescript
+      
+      - name: git push
+        run: git push --follow-tags
 
 permissions:
-  contents: read
+  contents: write
   id-token: write
