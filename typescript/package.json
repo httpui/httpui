@@ -2,6 +2,7 @@
   "author": "Alex Morales, httpUI",
   "description": "httpUI",
   "devDependencies": {
+    "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   },
   "files": [
@@ -9,14 +10,14 @@
   ],
   "keywords": [],
   "license": "AGPL-3.0",
-  "main": "dist/index.js",
+  "main": "dist/index.esm.js",
   "name": "@httpui/typescript",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/httpui/httpui.git"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsup",
     "clean": "rm -rf dist",
     "prepublishOnly": "npm run build"
   },
