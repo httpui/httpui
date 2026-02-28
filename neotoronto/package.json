@@ -1,0 +1,29 @@
+{
+  "author": "Alex Morales, HTTP UI",
+  "description": "HTTP UI, httpui.com",
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "httpui"
+  ],
+  "license": "AGPL-3.0",
+  "main": "dist/index.esm.js",
+  "name": "@httpui/neotoronto",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/httpui/httpui.git"
+  },
+  "scripts": {
+    "build": "tsup",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build"
+  },
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "version": "0.0.1"
+}
