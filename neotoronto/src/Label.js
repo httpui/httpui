@@ -30,7 +30,7 @@ const oklchaToCSS = oklcha => 'oklch(' + oklcha.l + ' ' + oklcha.c + ' ' + oklch
 //   level: [safety, notice, caution, warning, danger]
 //          follows ANSI Z535
 
-import httpstate from 'https://cdn.jsdelivr.net/npm/@httpstate/typescript@0.0.37/dist/index.esm.js';
+import * as httpstate from 'https://cdn.jsdelivr.net/npm/@httpstate/typescript@0.0.37/dist/index.esm.js';
 
 export class Label extends HTMLElement {
   // OBSERVED ATTRIBUTES
