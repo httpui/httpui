@@ -28,7 +28,10 @@ const oklchaToCSS = oklcha => 'oklch(' + oklcha.l + ' ' + oklcha.c + ' ' + oklch
 // attributes
 //   flicker: boolean
 //   level: [safety, notice, caution, warning, danger]
-//          follows ANSI Z535 
+//          follows ANSI Z535
+
+// import httpstate from 'https://cdn.jsdelivr.net/npm/@httpstate/typescript@0.0.36/dist/index.esm.js';
+import * as httpstate from '/typescript/dist/index.esm.js';
 
 export class Label extends HTMLElement {
   // OBSERVED ATTRIBUTES
@@ -54,8 +57,38 @@ export class Label extends HTMLElement {
     }
   }
 
-  connectedCallback() {
+  async connectedCallback() {
     console.log('connectedCallback');
+
+    if(this.attributes['httpstate']) {
+      await httpstate.load();
+
+      const uuid = this.getAttribute('httpstate');
+      httpstate.load._[uuid]
+        .off('change')
+        .on('change', data => {
+          try {
+            const json = JSON.parse(data);
+
+            if(
+                 json.html
+              || json.innerHTML
+            ) {
+              this.innerHTML = json.html || json.innerHTML;
+            }
+
+            for(const [k, v] of Object.entries(json)) {
+              if(
+                   k === 'html'
+                || k === 'innerHTML'
+              )
+                this.innerHTML = v;
+              else
+                this.setAttribute(k, v);
+            }
+          } catch {}
+        });
+    }
 
     // OBSERVED ATTRIBUTES
     if(this.attributes['level'] === undefined)
@@ -85,7 +118,9 @@ export class Label extends HTMLElement {
     if(this.div) {
       this.div.innerHTML = '<slot></slot>';
 
-      const level = this.getAttribute('level').toLowerCase();
+      const level = attrIsTrue(this.attributes['level'])
+        ? this.getAttribute('level').toLowerCase()
+        : 'notice';
 
       let oklcha = undefined;
 
