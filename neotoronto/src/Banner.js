@@ -75,7 +75,7 @@ export class Banner extends HTMLElement {
     // ...
 
     // CSS
-    // ...
+    const cssStyleSheet = new CSSStyleSheet();
 
     this.attachShadow({ mode:'open' });
     this.shadowRoot.adoptedStyleSheets = [cssStyleSheet];
