@@ -3,7 +3,10 @@ import { defineConfig } from 'tsup';
 export default defineConfig({
   clean:true,
   dts:true,
-  entry:['src/Label.js'],
+  entry:{
+    Banner:'src/Banner.js',
+    Label:'src/Label.js'
+  },
   format:['cjs', 'esm', 'iife'],
   globalName:'httpui',
   minify:true,

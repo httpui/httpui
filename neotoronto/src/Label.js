@@ -6,31 +6,15 @@
 // General Public License as published by the Free Software Foundation, either
 // version 3 of the License, or (at your option) any later version.
 
-const attrIsTrue = a => {
-  if(!a)
-    return false;
-  
-  const s = String(a.value).toLowerCase();
-
-  if(
-       s === 'undefined'
-    || s === 'null'
-    || s === 'false'
-    || s === '0'
-  )
-    return false;
-  
-  return true;
-};
-
-const oklchaToCSS = oklcha => 'oklch(' + oklcha.l + ' ' + oklcha.c + ' ' + oklcha.h + ' / ' + oklcha.a + ')';
-
+// API
 // attributes
 //   flicker: boolean
 //   level: [safety, notice, caution, warning, danger]
 //          follows ANSI Z535
 
-import * as httpstate from 'https://cdn.jsdelivr.net/npm/@httpstate/typescript@0.0.38/dist/index.esm.js';
+import * as httpstate from 'https://cdn.jsdelivr.net/npm/@httpstate/typescript@0.0.39/dist/index.esm.js';
+
+import { attrIsTrue, oklchaToCSS } from './misc.js';
 
 export class Label extends HTMLElement {
   // OBSERVED ATTRIBUTES
