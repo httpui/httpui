@@ -53,13 +53,6 @@ export class Label extends HTMLElement {
           try {
             const json = JSON.parse(data);
 
-            if(
-                 json.html
-              || json.innerHTML
-            ) {
-              this.innerHTML = json.html || json.innerHTML;
-            }
-
             for(const [k, v] of Object.entries(json)) {
               if(
                    k === 'html'
@@ -74,7 +67,9 @@ export class Label extends HTMLElement {
               else
                 this.setAttribute(k, v);
             }
-          } catch {}
+          } catch(e) {
+            console.error(new Date().toISOString(), 'connectedCallback.change', e);
+          }
         });
     }
 
